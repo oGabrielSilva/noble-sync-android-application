@@ -1,6 +1,5 @@
 package com.noble.sync.ui.home.activity
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,7 +44,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
     private lateinit var db: FirebaseFirestore
 
-    private var userChanges: UserProfileChangeRequest? = null
+    private var userExtraIsFinished = false
+    private var userIsFinished = false
 
     private val launcherGallery =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
@@ -131,7 +130,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.male.setOnClickListener { vm.updateGender(Gender.MALE) }
         binding.female.setOnClickListener { vm.updateGender(Gender.FEMALE) }
         binding.other.setOnClickListener { vm.updateGender(Gender.OTHER) }
-        binding.save.setOnClickListener { trySignUp() }
+        binding.save.setOnClickListener { updateUser() }
         binding.goBack.setOnClickListener { finish() }
         binding.goBackTop.setOnClickListener { finish() }
     }
@@ -209,15 +208,6 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-    private fun trySignUp() {
-        dialog.showWithTitle(getString(R.string.wait))
-        val name = vm.name.value ?: ""
-        val nickname = vm.nickname.value ?: ""
-
-        if (authIsValid(name, nickname)) completeSignUp(name, nickname)
-        else dialog.hide()
-    }
-
     private fun authIsValid(name: String, nickname: String): Boolean {
         val nameIsValid = validation.nameIsValid(name)
         if (!nameIsValid) {
@@ -233,78 +223,58 @@ class ProfileActivity : AppCompatActivity() {
         return true
     }
 
-    private fun completeSignUp(name: String, nickname: String) {
-        val photo = vm.userImage.value
+    private fun updateUser() {
+        dialog.showWithTitle(getString(R.string.wait))
+        val name = vm.name.value ?: ""
+        val nickname = vm.nickname.value ?: ""
 
-        if (photo != null) {
-            Auth.uploadUserPhoto(
-                storage,
-                photo,
-                auth.currentUser!!.uid
-            ).addOnFailureListener {
-                dialog.hide()
-                Log.e("Test", "uploadUserPhoto:failure", it)
-                Snackbar.make(
-                    binding.root,
-                    R.string.upload_user_photo_error,
-                    Snackbar.LENGTH_LONG,
-                ).show()
-            }
-                .addOnSuccessListener {
-                    it.storage.downloadUrl.addOnSuccessListener {
-                        userChanges = userProfileChangeRequest {
-                            displayName = name
-                            photoUri = it
-                        }
-                        endSignUp(nickname)
-                    }
-                }
-        } else {
-            userChanges = userProfileChangeRequest {
-                displayName = name
-            }
-            endSignUp(nickname)
-        }
-    }
+        if (!authIsValid(name, nickname)) return
+        val user = auth.currentUser!!
+        val userExtra = Auth.userExtra!!
 
-    private fun endSignUp(nickname: String) {
-        val gender = vm.gender.value
+        val bio = vm.bio.value ?: ""
+        val gender = vm.gender.value ?: Gender.OTHER
 
-        if (userChanges != null) {
-            val user = auth.currentUser
-            user!!.updateProfile(userChanges!!)
-                .addOnSuccessListener {
-                    val usr =
-                        User(auth.currentUser!!.uid, nickname, gender!!, Auth.userExtra!!.year, "")
-                    Auth.uploadUserExtras(db, usr).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            dialog.hide()
-                            Auth.userExtra = usr
-                            startActivity(Intent(this, HomeActivity::class.java))
-                            finishAffinity()
-                        } else {
-                            dialog.hide()
-                            Log.e("Test", "uploadUserExtras:failure", it.exception)
-                            Auth.deleteUserPhoto(storage, auth.currentUser!!.uid)
-                            auth.currentUser!!.delete()
-                            Snackbar.make(
-                                binding.root,
-                                R.string.upload_user_extra_error,
-                                Snackbar.LENGTH_LONG,
-                            ).show()
-                        }
-                    }
-                }.addOnFailureListener {
+        val userChanges =
+            if (name != user.displayName) userProfileChangeRequest { displayName = name }
+            else null
+
+        val u = User(
+            user.uid,
+            if (nickname != userExtra.nickname) nickname else userExtra.nickname,
+            if (gender != userExtra.gender) gender else userExtra.gender,
+            userExtra.year,
+            if (bio != userExtra.bio) bio else userExtra.bio
+        )
+
+        if (!u.isEqualTo(userExtra)) Auth.uploadUserExtras(db, u)
+            .addOnSuccessListener {
+                Auth.userExtra = u
+                userExtraIsFinished = true
+                if (userIsFinished) {
+                    userIsFinished = false
+                    userExtraIsFinished = false
                     dialog.hide()
-                    Log.e("Test", "userChanges:failure", it)
-                    Auth.deleteUserPhoto(storage, auth.currentUser!!.uid)
-                    auth.currentUser!!.delete()
                     Snackbar.make(
                         binding.root,
-                        R.string.upload_user_extra_error,
-                        Snackbar.LENGTH_LONG,
+                        R.string.upload_user_success,
+                        Snackbar.LENGTH_LONG
                     ).show()
                 }
-        }
+            }
+        if (userChanges != null) auth.currentUser?.updateProfile(userChanges)
+            ?.addOnSuccessListener {
+                userIsFinished = true
+                if (userExtraIsFinished) {
+                    userIsFinished = false
+                    userExtraIsFinished = false
+                    dialog.hide()
+                    Snackbar.make(
+                        binding.root,
+                        R.string.upload_user_success,
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
 }

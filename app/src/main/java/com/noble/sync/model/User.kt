@@ -20,4 +20,28 @@ class User(
         hashMap["bio"] = bio
         return hashMap
     }
+
+    fun isEqualTo(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as User
+
+        if (uid != other.uid) return false
+        if (nickname != other.nickname) return false
+        if (gender != other.gender) return false
+        if (year != other.year) return false
+        return bio == other.bio
+    }
+
+    override fun hashCode(): Int {
+        var result = uid.hashCode()
+        result = 31 * result + nickname.hashCode()
+        result = 31 * result + gender.hashCode()
+        result = 31 * result + year
+        result = 31 * result + bio.hashCode()
+        return result
+    }
+
+
 }

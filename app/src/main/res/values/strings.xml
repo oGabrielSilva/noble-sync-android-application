@@ -70,4 +70,5 @@
     <string name="go_back_button_description">Botão de voltar</string>
     <string name="change_avatar">Alterar avatar?</string>
     <string name="upload_user_photo_success">Seu avatar foi atualizado com sucesso</string>
+    <string name="upload_user_success">Seu perfil foi atualizado com sucesso</string>
 </resources>
