@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/drawer_header_bg"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/primary"
+        app:cardCornerRadius="21dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/avatarDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_placeholder"
+            app:tint="@color/textPlaceholder" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="4dp"
+        android:text="@string/name_hint"
+        android:textColor="@color/title"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@id/userGender"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/card"
+        app:layout_constraintTop_toTopOf="@+id/card" />
+
+    <ImageView
+        android:id="@+id/userGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/gender_description"
+        android:src="@drawable/ic_male"
+        app:layout_constraintBottom_toBottomOf="@id/userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/userName"
+        app:layout_constraintTop_toTopOf="@id/userName" />
+
+    <TextView
+        android:id="@+id/userNickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingHorizontal="16dp"
+        android:text="@string/nickname_hint"
+        app:layout_constraintBottom_toBottomOf="@id/card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@id/userName" />
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:padding="8dp"
+        android:text="@string/email_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

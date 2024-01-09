@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "407382943479",
+    "project_id": "social-noble",
+    "storage_bucket": "social-noble.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407382943479:android:bc553a3110b2999ecb55f2",
+        "android_client_info": {
+          "package_name": "com.noble.sync"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407382943479-pni62dlfdq4r7er4edr52p1n2pbug9l6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.noble.sync",
+            "certificate_hash": "4bbb6e5b131c4ff25a3740ecc8321e538985f618"
+          }
+        },
+        {
+          "client_id": "407382943479-95m8ds0vli45jnb5d1oiudkal1b34ik2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI3QqKQjj-BVdzqQxnkaKswQqEoTiT4XE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "407382943479-95m8ds0vli45jnb5d1oiudkal1b34ik2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

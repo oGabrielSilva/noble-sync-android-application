@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.SignUpActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="64dp">
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/app_name"
+            android:textColor="@color/title"
+            android:textSize="32sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/sign_up_welcome"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/appName" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/primary"
+            app:cardCornerRadius="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wm">
+
+            <ImageView
+                android:id="@+id/profile"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile_placeholder"
+                app:tint="@color/textPlaceholder" />
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/removeProfile"
+            style="@style/NoBorderButton"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            android:textColor="@color/link"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card" />
+
+        <TextView
+            android:id="@+id/labelName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/name"
+            app:layout_constraintTop_toBottomOf="@id/removeProfile" />
+
+        <EditText
+            android:id="@+id/name"
+            android:maxLength="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="name"
+            android:background="@drawable/auth_input"
+            android:hint="@string/name_hint"
+            android:inputType="textAutoComplete|textCapWords|textPersonName"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/labelName" />
+
+        <TextView
+            android:id="@+id/smallName"
+            style="@style/Theme.Sync.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_small"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <TextView
+            android:id="@+id/labelNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/nickname"
+            app:layout_constraintTop_toBottomOf="@id/smallName" />
+
+        <EditText
+            android:id="@+id/nickname"
+            android:maxLength="50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="username"
+            android:background="@drawable/auth_input"
+            android:hint="@string/nickname_hint"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/labelNickname" />
+
+        <TextView
+            android:id="@+id/smallNickname"
+            style="@style/Theme.Sync.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nickname_small"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+        <TextView
+            android:id="@+id/labelYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/year"
+            app:layout_constraintTop_toBottomOf="@id/smallNickname" />
+
+        <EditText
+            android:id="@+id/year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:background="@drawable/auth_input"
+            android:hint="@string/year_hint"
+            android:inputType="number"
+            android:maxLength="4"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/labelYear" />
+
+        <TextView
+            android:id="@+id/smallYear"
+            style="@style/Theme.Sync.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/year_small"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/year" />
+
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="@string/male"
+            app:layout_constraintEnd_toStartOf="@id/female"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/smallYear" />
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="@string/female"
+            app:layout_constraintEnd_toStartOf="@id/other"
+            app:layout_constraintStart_toEndOf="@id/male"
+            app:layout_constraintTop_toBottomOf="@id/smallYear" />
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="@string/other"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/female"
+            app:layout_constraintTop_toBottomOf="@id/smallYear" />
+
+        <Button
+            android:id="@+id/save"
+            style="@style/SuccessButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/male" />
+
+        <Button
+            android:id="@+id/goBack"
+            style="@style/NoBorderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/cancel"
+            android:textColor="@color/danger"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/save" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

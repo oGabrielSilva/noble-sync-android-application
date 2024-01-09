@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#050508</color>
+    <color name="secondary">#22273c</color>
+    <color name="variant">#53598d</color>
+    <color name="text">#bbbbbb</color>
+    <color name="title">#fbfbfb</color>
+    <color name="textPlaceholder">#6f6f6f</color>
+    <color name="danger">#ff2020</color>
+    <color name="success">#41db7f</color>
+    <color name="darkSuccess">#2E9C5A</color>
+    <color name="warning">#c7cf4b</color>
+    <color name="link">#0089ff</color>
+    <color name="drawerBackground">#0C0C13</color>
+    <color name="drawerHeaderBackground">#13131E</color>
+</resources>

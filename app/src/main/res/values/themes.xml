@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Sync" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/title</item>
+        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/secondary</item>
+        <item name="android:windowBackground">@color/primary</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorHint">@color/textPlaceholder</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="snackbarStyle">@style/SnackBarStyle</item>
+    </style>
+
+    <style name="Theme.Sync.Small" parent="Theme.Sync">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/warning</item>
+    </style>
+
+    <style name="AuthButton" parent="Theme.Sync">
+        <item name="android:background">@drawable/auth_button</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="NoBorderButton">
+        <item name="android:background">@drawable/no_border_button</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="SuccessButton">
+        <item name="android:background">@drawable/success_button</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="SnackBarStyle">
+        <item name="android:background">@color/secondary</item>
+    </style>
+
+    <style name="DrawerTheme" parent="Theme.Material3.DayNight">
+        <item name="colorSecondaryContainer">@color/variant</item>
+        <item name="colorOnSecondaryContainer">@color/text</item>
+        <item name="itemShapeFillColor">@color/secondary</item>
+    </style>
+</resources>

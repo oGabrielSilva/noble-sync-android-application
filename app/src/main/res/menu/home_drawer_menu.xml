@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainItems"
+        android:title="@string/app_name">
+        <menu>
+            <item
+                android:id="@+id/drawerItemMessages"
+                android:icon="@drawable/ic_inbox"
+                android:title="@string/messages"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/drawerItemExplore"
+                android:icon="@drawable/ic_compass"
+                android:title="@string/explore"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/drawerItemCommunities"
+                android:icon="@drawable/ic_atom"
+                android:title="@string/communities"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/drawerItemNotifications"
+                android:icon="@drawable/ic_notify"
+                android:title="@string/notify"
+                android:checkable="true" />
+            <item
+                android:id="@+id/drawerItemSaves"
+                android:icon="@drawable/ic_favorite"
+                android:title="@string/saves"
+                android:checkable="true" />
+        </menu>
+    </item>
+    <item android:id="@+id/profileItems"
+        android:title="@string/profile">
+        <menu>
+            <item
+                android:id="@+id/drawerItemEditProfile"
+                android:icon="@drawable/ic_person"
+                android:title="@string/edit_profile"
+                android:checkable="false" />
+            <item
+                android:id="@+id/drawerItemPosts"
+                android:icon="@drawable/ic_file"
+                android:title="@string/posts"
+                android:checkable="true" />
+            <item
+                android:id="@+id/drawerItemMyCommunities"
+                android:icon="@drawable/ic_design"
+                android:title="@string/my_communities"
+                android:checkable="true" />
+            <item
+                android:id="@+id/drawerItemPremium"
+                android:icon="@drawable/ic_premium"
+                android:title="@string/premium"
+                android:checkable="true" />
+        </menu>
+    </item>
+    <item android:id="@+id/systemItems"
+        android:title="@string/system">
+        <menu>
+            <item
+                android:id="@+id/drawerItemSettings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/settings"
+                android:checkable="true" />
+            <item
+                android:id="@+id/drawerItemHelpAndFeedback"
+                android:icon="@drawable/ic_help"
+                android:title="@string/help_and_feedback"
+                android:checkable="true" />
+            <item
+                android:id="@+id/drawerItemAbout"
+                android:icon="@drawable/ic_about"
+                android:title="@string/about"
+                android:checkable="true" />
+        </menu>
+    </item>
+</menu>
