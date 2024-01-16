@@ -56,14 +56,14 @@ class ImageTool {
             val fileName = "IMG_$timeStamp.jpg"
             val file = File(ctx.cacheDir, fileName)
 
-            try {
+            return try {
                 val fos = FileOutputStream(file)
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 60, fos)
                 fos.close()
-                return file
+                file
             } catch (e: Exception) {
                 Log.e("Test", e.stackTraceToString())
-                return null
+                null
             }
         }
     }

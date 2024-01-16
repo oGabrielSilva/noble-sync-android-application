@@ -10,28 +10,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="32dp">
+        android:paddingTop="32dp">
 
         <ImageButton
             android:id="@+id/drawerTopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/drawable_button_bg"
-            android:padding="8dp"
+            android:background="@drawable/button_no_border_bg_anim"
+            android:padding="16dp"
             android:src="@drawable/ic_menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/title" />
+            app:tint="@color/title"
+            android:contentDescription="@string/drawer_top_button_description" />
 
         <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="16dp"
             android:paddingTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/drawerTopButton" />
+
+        <ImageButton
+            android:id="@+id/fabSupportDrawer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
+            android:padding="4dp"
+            android:elevation="11dp"
+            app:tint="@color/title"
+            android:background="@drawable/button_floating_drawer_support_bg"
+            android:src="@drawable/ic_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/drawer_bottom_image_button_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

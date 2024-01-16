@@ -24,10 +24,10 @@ import com.noble.sync.databinding.ActivityHomeBinding
 import com.noble.sync.enum.Gender
 import com.noble.sync.firebase.Auth
 import com.noble.sync.ui.auth.AuthActivity
+import com.noble.sync.ui.home.fragment.CommunitiesFragment
 import com.noble.sync.ui.home.fragment.ExploreFragment
 import com.noble.sync.ui.home.fragment.MessagesFragment
 import com.noble.sync.ui.home.fragment.SettingsFragment
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -48,6 +48,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityHomeBinding.inflate(layoutInflater)
         auth = Firebase.auth
         db = Firebase.firestore
+
         setContentView(binding.root)
         configureDrawerMenu()
         setListeners()
@@ -68,7 +69,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragment = when (item.itemId) {
             R.id.drawerItemMessages -> MessagesFragment()
             R.id.drawerItemExplore -> ExploreFragment()
-            R.id.drawerItemSettings -> SettingsFragment() { signOut() }
+            R.id.drawerItemCommunities -> CommunitiesFragment()
+            R.id.drawerItemSettings -> SettingsFragment { signOut() }
             R.id.drawerItemEditProfile -> {
                 startActivity(Intent(this, ProfileActivity::class.java))
                 null
@@ -85,12 +87,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun configureDrawerMenu() {
         try {
+            val nv = binding.navigationView.getHeaderView(0)
             vh = ViewHolder(
-                binding.navigationView.getHeaderView(0).findViewById(R.id.avatarDrawer),
-                binding.navigationView.getHeaderView(0).findViewById(R.id.userName),
-                binding.navigationView.getHeaderView(0).findViewById(R.id.userNickname),
-                binding.navigationView.getHeaderView(0).findViewById(R.id.userEmail),
-                binding.navigationView.getHeaderView(0).findViewById(R.id.userGender)
+                nv.findViewById(R.id.avatarDrawer),
+                nv.findViewById(R.id.userName),
+                nv.findViewById(R.id.userNickname),
+                nv.findViewById(R.id.userEmail),
+                nv.findViewById(R.id.userGender)
             )
             val actionBarDrawerToggle =
                 ActionBarDrawerToggle(
@@ -99,8 +102,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     R.string.nav_open,
                     R.string.nav_close
                 )
-            binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);
-            actionBarDrawerToggle.syncState();
+            binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
+            actionBarDrawerToggle.syncState()
             binding.navigationView.setNavigationItemSelectedListener(this)
 
             updateUserUI()
@@ -112,6 +115,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setListeners() {
         binding.drawerTopButton.setOnClickListener { binding.drawerLayout.openDrawer(GravityCompat.START) }
+        binding.fabSupportDrawer.setOnClickListener { binding.drawerLayout.openDrawer(GravityCompat.START) }
 
         vh.avatar.setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
     }
@@ -123,7 +127,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val user = auth.currentUser!!
                 vh.email.text = user.email
                 vh.name.text = user.displayName
-                if(Auth.userExtra == null) {
+                if (Auth.userExtra == null) {
                     Auth.updateUserExtra(db, user.uid, binding.root) { success ->
                         if (success != null && success && Auth.userExtra != null) {
                             vh.nickname.text = Auth.userExtra?.nickname

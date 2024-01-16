@@ -23,6 +23,13 @@
         android:theme="@style/Theme.Sync"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.activity.ViewCommunityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.activity.CreateCommunityActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
             android:name=".ui.home.activity.ProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustResize" />

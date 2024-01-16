@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.fragment.CommunitiesFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_light"
+        android:text="@string/my_communities"
+        android:textColor="@color/title"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/communityRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exploreCommunities" />
+
+    <Button
+        android:id="@+id/exploreCommunities"
+        style="@style/NoBorderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="16dp"
+        android:text="@string/explore_communities"
+        android:textColor="@color/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <Button
+        android:id="@+id/createCommunity"
+        style="@style/NoBorderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_no_border_bg_anim"
+        android:drawableStart="@drawable/ic_new_community"
+        android:drawablePadding="16dp"
+        android:drawableTint="@color/success"
+        android:paddingHorizontal="16dp"
+        android:text="@string/create_your_community"
+        app:layout_constraintHorizontal_bias="1"
+        android:textColor="@color/success"
+        app:layout_constraintBottom_toBottomOf="@id/exploreCommunities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/exploreCommunities"
+        app:layout_constraintTop_toTopOf="@id/exploreCommunities" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

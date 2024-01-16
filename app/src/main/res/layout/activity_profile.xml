@@ -17,7 +17,7 @@
         <ImageButton
             android:id="@+id/goBackTop"
             android:src="@drawable/ic_go_back_arrow"
-            android:background="@drawable/drawable_button_bg"
+            android:background="@drawable/button_no_border_bg_anim"
             app:tint="@color/title"
             android:padding="8dp"
             app:layout_constraintTop_toTopOf="@id/title"
